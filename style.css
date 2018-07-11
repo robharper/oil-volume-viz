@@ -22,8 +22,10 @@ h1 {
 }
 
 .viz-container {
-  max-width: 1130px;
+  max-width: 1160px;
   margin: 0 auto;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 h2 {
@@ -130,6 +132,13 @@ table.grid td{
 }
 .scale-1000000000a .viz-box span.sub, .scale-1000000000a .block.sub {
   background: green;
+}
+
+.scale-1000000 .viz-box-inverse span.sub {
+  background: #d3201d;
+}
+.scale-1000000 .viz-box-inverse span, .scale-1000000 .block.light {
+  background: #d8afae;
 }
 
 .footer {
