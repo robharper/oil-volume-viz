@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Canada's Oil - Visualized</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    var data = [
+      {
+        cat: 'country-canada',
+        vol: 9,
+        scale: 1
+      },
+      {
+        cat: 'country-korea',
+        vol: 15,
+        scale: 1
+      },
+      {
+        cat: 'country-luxembourg',
+        vol: 13,
+        scale: 1
+      },
+      {
+        cat: 'country-usa',
+        vol: 8,
+        scale: 1
+      },
+      {
+        cat: 'country-oecd',
+        vol: 4,
+        scale: 1
+      },
+
+      {
+        cat: 'gas-car',
+        vol: 7,
+        scale: 1
+      },
+      {
+        cat: 'gas-home',
+        vol: 11,
+        scale: 1
+      },
+      {
+        cat: 'gas-hfx-van-car',
+        vol: 3,
+        scale: 1
+      },
+      {
+        cat: 'gas-hfx-van-plane',
+        vol: 471,
+        scale: 1
+      },
+      {
+        cat: 'gas-hfx-que-boat',
+        vol: 2216,
+        scale: 1
+      },
+
+      {
+        cat: 'industry-water',
+        vol: 15,
+        scale: 1000
+      },
+      {
+        cat: 'industry-tires',
+        vol: 2040,
+        scale: 1000
+      },
+      {
+        cat: 'industry-roads',
+        vol: 95,
+        scale: 1000
+      },
+
+      {
+        cat: 'spill-transmountain',
+        vol: 3,
+        scale: 1000
+      },
+      {
+        cat: 'spill-magentic',
+        vol: 35,
+        scale: 1000
+      },
+      {
+        cat: 'spill-exxon',
+        vol: 260,
+        scale: 1000
+      },
+      {
+        cat: 'spill-odyssey',
+        vol: 1020,
+        scale: 1000
+      },
+      {
+        cat: 'spill-deep-water',
+        vol: 4339,
+        scale: 1000
+      },
+
+      {
+        cat: 'move-rail',
+        vol: 55,
+        scale: 1000000
+      },
+      {
+        cat: 'move-transmountain',
+        vol: 110,
+        scale: 1000000
+      },
+      {
+        cat: 'move-keystone',
+        vol: 216,
+        scale: 1000000
+      },
+      {
+        cat: 'prod-canada',
+        vol: 1424,
+        sub: 876,
+        scale: 1000000
+      },
+
+      {
+        cat: 'demand-world',
+        vol: 36,
+        scale: 1000000000
+      },
+      {
+        cat: 'reserves-canada',
+        vol: 171,
+        sub: 165,
+        scale: 1000000000
+      },
+      {
+        cat: 'reserves-world',
+        vol: 1651,
+        sub: 1354,
+        scale: 1000000000
+      }
+    ];
+  </script>
+</head>
+
+<body>
+    <div class="viz-container">
+      <h1><span class="tear"></span>Canada's Oil</h1>
+      
+      <div class="row scale-1 lede-header">
+        <div class="col-md-8">
+          <h2>Barrels of Oil</h2>
+          <p>This infographic illustrates the volumes of oil we produce, spill, and consume in Canada. Each square <span class="block"></span> in this section represents a single barrel of oil.
+            As you scroll down, we'll switch to larger <span class="block block-1000"></span> and larger <span class="block block-1000000"></span> and larger <span class="block block-1000000000"></span> orders of magnitude. This visualization heavily cribs from The Visual Capitalist's <a href="http://www.visualcapitalist.com/worlds-money-markets-one-visualization-2017/">All the World's Money</a>.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <div class="legend-scale">
+            <span class="block"></span>
+            <span class="equals">=</span>
+            <div class="barrel">
+              <div class="barrel-rim"></div>
+              <div class="barrel-text">159 Litres of Oil</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Annual Oil Use Per Capita</h3>
+      <div class="row scale-1">
+        <!-- Countries -->
+        <div class="col-8">
+          <div class="row">
+            <div class="col-md">
+              <h5>South Korea</h5>
+              <div id="country-korea" class="viz-box"></div>
+            </div>
+            <div class="col-md">
+              <h5>Luxembourg</h5>
+              <div id="country-luxembourg" class="viz-box"></div>
+            </div>
+            <div class="col-md">
+              <h5>Canada</h5>
+              <div id="country-canada" class="viz-box"></div>
+            </div>
+            <div class="col-md">
+              <h5>USA</h5>
+              <div id="country-usa" class="viz-box"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <h5>OECD Average</h5>
+              <div id="country-oecd" class="viz-box"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 legend">
+          <p>
+            Canada is the third highest per-capita consumer of oil in the world - we use about <strong>9 barrels of oil per person every year</strong>.
+            That's more than double the OECD average of 4 barrels per capita per year. Canada is a big, cold country so we do have to drive further and heat
+            our homes more. But we also love our energy.
+          </p>
+        </div>
+      </div>
+
+      <h3>Transportation</h3>
+      <div class="row scale-1">
+        <!-- Transport -->
+        <div class="col-md-4">
+          <h5>Halifax &rarr; Vancouver by Car</h5>
+          <div id="gas-hfx-van-car" class="viz-box"></div>
+        </div>
+        <div class="col-md-4">
+          <h5>Halifax &rarr; Vancouver by Plane</h5>
+          <div id="gas-hfx-van-plane" class="viz-box"></div>
+        </div>
+        <div class="col-md-4 legend">
+          <p>The distance from Halifax to Vancouver is approximately 5800km by road. If you drive a car with a fuel efficiency of 10L / 100km you'll use 
+            about 3 barrels worth of gas. Note that a barrel of oil after refining yeilds about 46% gasoline.</p>
+          <p>If you take a plane it's a little more direct (4400km). A 747 would use approximately 471 barrels worth of jet fuel. Each barrel of oil yields about
+            4% jet fuel.
+          </p>
+        </div>
+      </div>
+      <div class="row scale-1">
+        <div class="col-md-8">
+          <h5>Halifax &rarr; Quebec City by Cruise Ship</h5>
+          <div id="gas-hfx-que-boat" class="viz-box"></div>
+        </div>
+        <div class="col-md-4 legend">
+          <p>
+            Cruise ships use a lot of fuel. Sailing from Halifax to Quebec City (1500km, only one third the distance to Vancouver) uses an incredible 2,216 barrels worth of fuel. (But cruise ships do move many many people at once)
+          </p>
+        </div>
+      </div>
+
+        
+        <div class="row scale-1000">
+          <div class="col-8">
+            <h2>Thousands of Barrels</h2>    
+          </div>
+          <div class="col-md-4">
+            <div class="legend-scale">
+              <span class="block"></span>
+              <span class="equals">=</span>
+              <div class="grid-wrapper">
+              <table class="grid">
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <h3>Oil used for Manufacturing</h3>
+        <div class="row scale-1000">
+          <!-- Industry -->
+          <div class="col-md-4">
+            <h5>Bottled water Canadians drink in a year</h5>
+            <div id="industry-water" class="viz-box"></div>
+          </div>
+          <div class="col-md-4">
+            <h5>Repaving 1% of Toronto's Roads</h5>
+            <div id="industry-roads" class="viz-box"></div>
+          </div>
+          <div class="col-md-4 legend">
+            <p>Canadians drink a staggering 2.4 billion litres of <strong>bottled water</strong> a year. 15,000 barrels of oil are needed to produce all that plastic.</p>
+            <p>Toronto has 14,800 lane-kms of road. If 1% of Toronto's roads are repaved every year, 95,000 barrels of oil would need to be used to make
+              the <strong>asphalt</strong> required.
+            </p>
+          </div>
+        </div>
+        <div class="row scale-1000">
+          <div class="col-md-8">
+            <h5>12,000,000 Tires</h5>
+            <div id="industry-tires" class="viz-box"></div>
+          </div>
+          <div class="col-md-4 legend">
+            <p>Canadians discard 12 million <strong>tires</strong> every year. To manufacture 12 million new tires 2,040,000 barrels of oil are needed.</p>
+          </div>
+        </div>
+
+        <h3>Oil Spills</h3>
+        <div class="row scale-1000">
+          <!-- Spills -->
+          <div class="col-8">
+            <div class="row">
+              <div class="col-md">
+                <h5>Transmountain Pipeline (2009-2018)</h5>
+                <div id="spill-transmountain" class="viz-box"></div>
+              </div>
+              <div class="col-md">
+                <h5>Lac Magentic (2013)</h5>
+                <div id="spill-magentic" class="viz-box"></div>
+              </div>
+              <div class="col-md">
+                <h5>Exxon Valdez (1989)</h5>
+                <div id="spill-exxon" class="viz-box"></div>
+              </div>  
+            </div>
+          </div>
+          <div class="col-md-4 legend">
+            <p>The <strong>Trans Mountain</strong> pipeline was constructed in 1951 and has had some pretty big spills in its early days. Since 2009, however, just under 3,000 barrels of oil have leaked from the old pipe.</p>
+            <p>The <strong>Lac Magentic</strong> rail disaster in 2013 was one of the deadliest rail accidents in Canadian history. From the 74 rail cars, 35,000 barrels of oil were spilled or burned.</p>
+            <p>The <strong>Exxon Valdez</strong> is one of the most famous oil spills in history. It released 260,000 barrels of oil into the ocean near Alaska in 1989.</p>
+          </div>
+        </div>
+        <div class="row scale-1000">
+          <div class="col-md-8">
+            <h5>Odyssey (1988)</h5>
+            <div id="spill-odyssey" class="viz-box"></div>
+          </div>
+          <div class="col-md-4 legend">
+            Canada's worst oil spill, and still one of the largest spills the world has ever experienced, occurred in 1988 off the coast of Nova Scotia. Over 1 million
+            barrels of oil were released into the Atlantic ocean from the tanker <strong>Odyssey</strong>. Much of it combusted rapidly due to the exploding ship, while the rest was carried out into the 
+            ocean toward England by the currents. No clean-up operation was mounted.
+          </div>
+        </div>
+        <div class="row scale-1000">
+          <div class="col-md-8">
+            <h5>Deepwater Horizon (2010)</h5>
+            <div id="spill-deep-water" class="viz-box"></div>
+          </div>
+          <div class="col-md-4 legend">
+            The off-shore oil drilling rig <strong>Deepwater Horizon</strong> famously exploded in April of 2010. The untapped well leaked oil into the Gulf of Mexico for nearly
+            3 months, spilling 4.3 million barrels of oil.
+          </div>
+        </div>
+
+        
+        <div class="row scale-1000000">
+          <div class="col-md-8">
+            <h2>Millions of Barrels</h2>
+          </div>
+          <div class="col-md-4">
+            <div class="legend-scale">
+              <span class="block"></span>
+              <span class="equals">=</span>
+              <div class="grid-wrapper">
+              <table class="grid">
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <h3>Oil Production</h3>
+        <div class="row scale-1000000">
+          <!-- Production -->
+          <div class="col-8">
+            <h5>Oil volume transported per year by...</h5>
+            <div class="row collapse-head">
+              <div class="col-md">
+                <h5>Rail</h5>
+                <div id="move-rail" class="viz-box"></div>
+              </div>  
+              <div class="col-md">
+                <h5>Trans Mountain Pipeline</h5>
+                <div id="move-transmountain" class="viz-box"></div>
+              </div>
+              <div class="col-md">
+                <h5>Keystone Pipeline</h5>
+                <div id="move-keystone" class="viz-box"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 legend">
+            <p>Once extracted, oil must be brought to refineries for processing. Some of the biggest transport methods used in Canada are rail and pipeline.
+            Rail is used to move oil all over the country. The Trans Mountain pipeline moves Alberta oil to the BC coast to load into tankers. The Keystone 
+            pipeline moves oil to the US. 99% of Canadian oil exports are to the US.</p>
+          </div>
+        </div>
+        <div class="row scale-1000000">
+          <div class="col-md-8">
+            <h5>Extracted in Canada / year</h5>
+            <div id="prod-canada" class="viz-box"></div>
+          </div>  
+          <div class="col-md-4 legend">
+            <p>In 2016 approximately 1.6 billion barrels of oil were produced from Canadian sources. More than half of that (876 million barrels) came from the oil sands.</p>
+            <p class="text-legend"><span class="block sub"></span>Produced by oil sands</p>
+            <p class="text-legend"><span class="block"></span>Produced from traditional sources</p>
+          </div>
+        </div>
+
+        <div class="row scale-1000000000">
+            <div class="col-md-8">
+              <h2>Billions of Barrels</h2>
+            </div>
+            <div class="col-md-4">
+              <div class="legend-scale">
+                <span class="block"></span>
+                <span class="equals">=</span>
+                <div class="grid-wrapper">
+                <table class="grid">
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <h3>Oil Reserves</h3>
+          <div class="row scale-1000000000">
+            <div class="col-md-8">
+              <h5>Demand</h5>
+              <div id="demand-world" class="viz-box"></div>
+            </div>
+            <div class="col-md-4 legend">
+              <p>In 2018 the demand for oil world-wide is approximately 36 billion barrels per year</p>
+            </div>
+          </div>
+          <div class="row scale-1000000000">
+            <!-- Production -->
+            <div class="col-md-8">
+              <h5>Canadian Reserves</h5>
+              <div id="reserves-canada" class="viz-box"></div>
+            </div>
+            <div class="col-md-4 legend">
+              <p>Canada has one of the largest proven oil reserves in the world with 171 billion barrels of oil yet to be extracted. <strong>Nearly all of it is in the oil sands.</strong></p>
+              <p class="text-legend"><span class="block sub"></span>Reserves in the oil sands</p>
+              <p class="text-legend"><span class="block"></span>Reserves in traditional sources</p>
+            </div>
+          </div>
+          <div class="row scale-1000000000a">
+            <div class="col-md-8">
+              <h5>World Reserves</h5>
+              <div id="reserves-world" class="viz-box"></div>
+            </div>  
+            <div class="col-md-4 legend">
+              <p>Worldwide there are approximately 1.6 trillion barrels of proven reserves. 82% of those are in OPEC countries. This leaves Canada with more than half of the non-OPEC reserves.</p>
+              <p class="text-legend"><span class="block sub"></span>Reserves in OPEC counties</p>
+              <p class="text-legend"><span class="block"></span>Reserves in the rest of the world</p>
+            </div>
+          </div>
+        <div class="footer">
+          <h5>References</h5>
+          <ul>
+              <li><a href="http://www.nrcan.gc.ca/energy/facts/crude-oil/20064">http://www.nrcan.gc.ca/energy/facts/crude-oil/20064</a>
+                <li><a href="https://www.nrcan.gc.ca/sites/www.nrcan.gc.ca/files/oee/pdf/industrial/technical-info/benchmarking/roadrehab/Roadhab_eng_web.pdf">https://www.nrcan.gc.ca/sites/www.nrcan.gc.ca/files/oee/pdf/industrial/technical-info/benchmarking/roadrehab/Roadhab_eng_web.pdf</a>
+                <li><a href="https://open.canada.ca/data/en/dataset/28c008b1-aea1-44d9-b7f4-af2ddcc8bc5c">https://open.canada.ca/data/en/dataset/28c008b1-aea1-44d9-b7f4-af2ddcc8bc5c</a>
+                <li><a href="https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/snpsht/2018/01-04whdcndnssl-eng.html?=undefined&wbdisable=true">https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/snpsht/2018/01-04whdcndnssl-eng.html?=undefined&wbdisable=true</a>
+                <li><a href="https://www150.statcan.gc.ca/n1/pub/11-526-s/2010001/part-partie1-eng.htm">https://www150.statcan.gc.ca/n1/pub/11-526-s/2010001/part-partie1-eng.htm</a>
+                <li><a href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=2310006601">https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=2310006601</a>
+                <li><a href="https://apps2.neb-one.gc.ca/pipeline-incidents">https://apps2.neb-one.gc.ca/pipeline-incidents</a>
+                <li><a href="https://www.treehugger.com/culture/pop-quiz-how-much-more-gas-do-americans-use.html">https://www.treehugger.com/culture/pop-quiz-how-much-more-gas-do-americans-use.html</a>
+                <li><a href="http://www.beyondships2.com/faq-cruise-ship-fuel-mileage.html">http://www.beyondships2.com/faq-cruise-ship-fuel-mileage.html</a>
+                <li><a href="http://watersmartsystems.com/blogs/24-bottled-water-statistics.htm">http://watersmartsystems.com/blogs/24-bottled-water-statistics.htm</a>
+                <li><a href="http://www.cbc.ca/montreal/features/lac-megantic-oil-amount-graphic/">http://www.cbc.ca/montreal/features/lac-megantic-oil-amount-graphic/</a>
+                <li><a href="https://en.wikipedia.org/wiki/List_of_oil_spills">https://en.wikipedia.org/wiki/List_of_oil_spills</a>
+                <li><a href="https://www.ogj.com/articles/print/volume-115/issue-12/special-report-worldwide-report/worldwide-oil-natural-gas-reserves-inch-higher-in-2017.html">https://www.ogj.com/articles/print/volume-115/issue-12/special-report-worldwide-report/worldwide-oil-natural-gas-reserves-inch-higher-in-2017.html</a>
+                <li><a href="https://www.catraonline.ca/catra/national-data">https://www.catraonline.ca/catra/national-data</a>
+                <li><a href="https://globalnews.ca/news/4064038/crude-by-rail-shipments-double-energy-pipelines/">https://globalnews.ca/news/4064038/crude-by-rail-shipments-double-energy-pipelines/</a>
+          </ul>
+        </div>
+    </div>
+
+  <script>
+    for (var i=0; i<data.length; i++) {
+      var datum = data[i];
+      var container = document.getElementById(datum.cat);
+      if (container) {
+        var fragment = document.createDocumentFragment();
+        for(var s=0; s<datum.vol; s++) {
+          var square = document.createElement('span');
+          if (s < datum.sub) {
+            square.className = 'sub';
+          }
+          fragment.appendChild(square);
+        } 
+        container.appendChild(fragment);
+      }
+    }
+  </script>
+</body>
+
+</html>
