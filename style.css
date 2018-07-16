@@ -43,6 +43,9 @@ h5 {
 .lede-header h2 {
   margin-top: 2rem;
 }
+h2 + p {
+  margin-top: 1em;
+}
 
 .viz-box {
   line-height: 16px;
@@ -52,6 +55,10 @@ h5 {
   width: 16px;
   height: 16px;
   margin: 0 1px;
+}
+.block-half {
+  height: 8px;
+  margin-bottom: 8px;
 }
 
 
@@ -80,6 +87,9 @@ h5 {
 
 /* Grid legends */
 .legend-scale {
+  margin-top: 4em;
+}
+.lede-header .legend-scale {
   margin-top: 2em;
 }
 .legend-text {
